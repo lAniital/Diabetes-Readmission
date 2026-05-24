@@ -4,6 +4,7 @@ from pathlib import Path
 
 from src.data_preprocessing import load_and_preprocess_data
 from src.evaluate_model import evaluate_model
+from src.explain_model import explain_model
 from src.train_model import save_model, train_random_forest
 
 
@@ -34,6 +35,10 @@ def main() -> None:
     evaluate_model(model, x_test, y_test)
     print("Evaluation complete.")
 
+    explain_model(model, x_test, max_samples=50)
+    print("Explainability complete.")
+
 
 if __name__ == "__main__":
     main()
+
