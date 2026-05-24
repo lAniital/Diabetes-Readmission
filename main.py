@@ -3,9 +3,11 @@
 from pathlib import Path
 
 from src.data_preprocessing import load_and_preprocess_data
+from src.train_model import save_model, train_random_forest
 
 
 DATA_PATH = Path("data/diabetic_data.csv")
+MODEL_PATH = Path("models/random_forest_readmission.joblib")
 
 
 def main() -> None:
@@ -21,6 +23,12 @@ def main() -> None:
     print(f"Test rows: {len(x_test):,}")
     print(f"Training features: {x_train.shape[1]:,}")
     print(f"Positive class rate in train: {y_train.mean():.3f}")
+
+    model = train_random_forest(x_train, y_train)
+    saved_path = save_model(model, MODEL_PATH)
+
+    print("Training complete.")
+    print(f"Model saved to: {saved_path}")
 
 
 if __name__ == "__main__":
