@@ -3,6 +3,7 @@
 from pathlib import Path
 
 from src.data_preprocessing import load_and_preprocess_data
+from src.evaluate_model import evaluate_model
 from src.train_model import save_model, train_random_forest
 
 
@@ -29,6 +30,9 @@ def main() -> None:
 
     print("Training complete.")
     print(f"Model saved to: {saved_path}")
+
+    evaluate_model(model, x_test, y_test)
+    print("Evaluation complete.")
 
 
 if __name__ == "__main__":
